@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Christine Kungu — Portfolio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --accent: #5B2D8E;
+      --accent-light: #F3EDF9;
+      --accent-border: #C4A8E8;
+      --text-primary: #1A1A2E;
+      --text-secondary: #555570;
+      --bg-primary: #ffffff;
+      --bg-secondary: #F7F5FA;
+      --border: rgba(0,0,0,0.1);
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --text-primary: #F0EDF6;
+        --text-secondary: #B0A8C0;
+        --bg-primary: #1A1625;
+        --bg-secondary: #231D30;
+        --border: rgba(255,255,255,0.1);
+        --accent-light: #2D1F42;
+        --accent-border: #7B4FC0;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2.5rem;
+      border-bottom: 0.5px solid var(--border);
+      position: sticky; top: 0;
+      background: var(--bg-primary);
+      z-index: 100;
+    }
+    .nav-name { font-size: 15px; font-weight: 500; color: var(--text-primary); }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+    .nav-links a {
+      font-size: 13px; color: var(--text-secondary);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      max-width: 860px; margin: 0 auto;
+      padding: 5rem 2.5rem 4rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .hero-eyebrow {
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.25rem; font-weight: 500;
+    }
+    .hero-name {
+      font-size: 52px; font-weight: 500; color: var(--text-primary);
+      line-height: 1.05; margin-bottom: 1rem;
+    }
+    .hero-name span { color: var(--accent); }
+    .hero-tagline {
+      font-size: 17px; color: var(--text-secondary);
+      max-width: 580px; line-height: 1.7; margin-bottom: 2rem;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2.5rem; }
+    .tag {
+      font-size: 12px; padding: 5px 14px; border-radius: 20px;
+      border: 0.5px solid var(--accent-border);
+      color: var(--accent); background: var(--accent-light);
+    }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      font-size: 14px; padding: 10px 24px; border-radius: var(--radius-md);
+      background: var(--accent); color: #fff; border: none; cursor: pointer;
+      text-decoration: none; display: inline-block;
+    }
+    .btn-primary:hover { background: #4a2278; }
+    .btn-secondary {
+      font-size: 14px; padding: 10px 24px; border-radius: var(--radius-md);
+      background: transparent; color: var(--text-primary);
+      border: 0.5px solid var(--border); cursor: pointer;
+      text-decoration: none; display: inline-block;
+    }
+    .btn-secondary:hover { background: var(--bg-secondary); }
+
+    /* SECTIONS */
+    section {
+      max-width: 860px; margin: 0 auto;
+      padding: 4rem 2.5rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .section-label {
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 2rem; font-weight: 500;
+    }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 3rem; align-items: start; }
+    .about-text { font-size: 15px; color: var(--text-secondary); line-height: 1.8; }
+    .about-text p + p { margin-top: 1rem; }
+    .about-stats { display: flex; flex-direction: column; gap: 12px; }
+    .stat-item {
+      padding: 1.25rem; background: var(--bg-secondary);
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--accent);
+    }
+    .stat-num { font-size: 30px; font-weight: 500; color: var(--accent); }
+    .stat-desc { font-size: 12px; color: var(--text-secondary); margin-top: 4px; line-height: 1.4; }
+
+    /* PROJECT */
+    .project-card {
+      background: var(--bg-primary);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      border-left: 4px solid var(--accent);
+      padding: 2rem;
+    }
+    .project-title { font-size: 18px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
+    .project-meta { font-size: 13px; color: var(--accent); margin-bottom: 1.25rem; }
+    .project-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 1rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem; }
+    .project-tag {
+      font-size: 11px; padding: 4px 10px; border-radius: 20px;
+      background: var(--bg-secondary); color: var(--text-secondary);
+      border: 0.5px solid var(--border);
+    }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; color: var(--accent); text-decoration: none;
+      border: 0.5px solid var(--accent-border); padding: 7px 16px;
+      border-radius: var(--radius-md); background: var(--accent-light);
+    }
+    .project-link:hover { background: var(--accent); color: #fff; }
+
+    /* TIMELINE */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 4px; top: 8px; bottom: 8px;
+      width: 1px; background: var(--border);
+    }
+    .timeline-item { position: relative; margin-bottom: 2.5rem; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute; left: -2rem; top: 5px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent); transform: translateX(-1px);
+    }
+    .timeline-date { font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+    .timeline-role { font-size: 16px; font-weight: 500; color: var(--text-primary); margin-bottom: 2px; }
+    .timeline-org { font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; }
+    .timeline-detail { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 3rem; }
+    .skill-group { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 1.25rem; }
+    .skill-group-title {
+      font-size: 11px; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--accent); margin-bottom: 1rem;
+    }
+    .skill-item { font-size: 13px; color: var(--text-secondary); padding: 4px 0; display: flex; align-items: center; gap: 8px; }
+    .skill-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+    /* EDUCATION */
+    .edu-list { display: flex; flex-direction: column; gap: 0; }
+    .edu-item {
+      padding: 1.25rem 0;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .edu-item:last-child { border-bottom: none; }
+    .edu-degree { font-size: 15px; font-weight: 500; color: var(--text-primary); }
+    .edu-school { font-size: 13px; color: var(--accent); margin: 3px 0; }
+    .edu-year { font-size: 12px; color: var(--text-secondary); }
+
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .contact-intro { font-size: 15px; color: var(--text-secondary); line-height: 1.8; }
+    .contact-items { display: flex; flex-direction: column; gap: 14px; }
+    .contact-item { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--text-secondary); text-decoration: none; }
+    .contact-item:hover { color: var(--accent); }
+    .contact-icon { color: var(--accent); font-size: 20px; flex-shrink: 0; }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 2rem;
+      font-size: 12px; color: var(--text-secondary);
+      border-top: 0.5px solid var(--border);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { gap: 1rem; }
+      .hero { padding: 3rem 1.25rem 2.5rem; }
+      .hero-name { font-size: 36px; }
+      section { padding: 2.5rem 1.25rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Christine Kungu</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#project">Project</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <p class="hero-eyebrow">IT &amp; Data Analytics Professional</p>
+  <h1 class="hero-name">Christine <span>Kungu</span></h1>
+  <p class="hero-tagline">MSc graduate building at the intersection of data systems, analytics, and real-world impact. I design and deliver end-to-end solutions — from pipeline to product.</p>
+  <div class="hero-tags">
+    <span class="tag">Python &amp; Flask</span>
+    <span class="tag">RESTful APIs</span>
+    <span class="tag">React</span>
+    <span class="tag">SQL</span>
+    <span class="tag">Data Integration</span>
+    <span class="tag">Machine Learning</span>
+    <span class="tag">Stakeholder Management</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#project" class="btn-primary">View my work</a>
+    <a href="#contact" class="btn-secondary">Get in touch</a>
+  </div>
+</div>
+
+<section id="about">
+  <p class="section-label">About</p>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm an IT and Data Analytics postgraduate from the University of the West of Scotland, with a background that spans economics, data systems, and organisational leadership. I've built full-stack applications, led teams across three countries, and worked in environments ranging from government offices in Kenya to student organisations in Scotland.</p>
+      <p>My approach combines analytical rigour with a genuine interest in how systems serve people. I'm drawn to roles where technology and mission align — and where the work has a real-world stake.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-item">
+        <div class="stat-num">2.5 yrs</div>
+        <div class="stat-desc">Leadership at AIESEC — finance, governance &amp; international partnerships</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4</div>
+        <div class="stat-desc">Public datasets integrated in MSc final project pipeline</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">7</div>
+        <div class="stat-desc">ML model families trained and ensembled in final project</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="project">
+  <p class="section-label">Key Project</p>
+  <div class="project-card">
+    <div class="project-title">Explainable AI Decision Support System</div>
+    <div class="project-meta">MSc Final Project — University of the West of Scotland, 2026</div>
+    <p class="project-desc">Designed and built a full-stack web application for evaluating carbon pricing policies in the energy sector. The system integrates a Flask Python backend with a React frontend via RESTful APIs, combining multi-source data pipelines, hybrid machine learning models, and interactive explainability visualisations into a single deployable product.</p>
+    <p class="project-desc">Data was sourced from the EU ETS, IEA, World Bank, and UK DESNZ — merged, cleaned, and feature-engineered into a unified panel dataset. Seven model families were trained with a weighted ensemble achieving R² of 0.99 on policy effectiveness scoring. SHAP and LIME layers provide stable, human-readable explanations for every prediction.</p>
+    <div class="project-tags">
+      <span class="project-tag">Flask</span>
+      <span class="project-tag">React</span>
+      <span class="project-tag">Python</span>
+      <span class="project-tag">RESTful API</span>
+      <span class="project-tag">XGBoost</span>
+      <span class="project-tag">LSTM</span>
+      <span class="project-tag">SHAP</span>
+      <span class="project-tag">SQL</span>
+      <span class="project-tag">GitHub</span>
+      <span class="project-tag">D3.js</span>
+    </div>
+    <a href="https://github.com/KunguChristineWanjiku/Carbon_Policy_Insights" class="project-link" target="_blank" rel="noopener">
+      <i class="ti ti-brand-github" aria-hidden="true"></i> View on GitHub
+    </a>
+  </div>
+</section>
+
+<section id="experience">
+  <p class="section-label">Experience</p>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Jan 2026 – Present</div>
+      <div class="timeline-role">Secretary, Sustainability Society</div>
+      <div class="timeline-org">University of the West of Scotland</div>
+      <div class="timeline-detail">Coordinate committee communications, scheduling, and documentation. Support end-to-end delivery of sustainability and student engagement events.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Oct 2025 – May 2026</div>
+      <div class="timeline-role">Student Ambassador</div>
+      <div class="timeline-org">University of the West of Scotland</div>
+      <div class="timeline-detail">Delivered presentations at outreach events and collaborated across teams to support student recruitment and engagement initiatives.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Feb 2025 – May 2025</div>
+      <div class="timeline-role">Intern, Administration &amp; Data Support</div>
+      <div class="timeline-org">Kiambu National Polytechnic</div>
+      <div class="timeline-detail">Conducted data verification and cross-referencing across departmental records. Implemented process improvements that reduced turnaround times and administrative errors.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">May 2023 – Sep 2023</div>
+      <div class="timeline-role">Economist Attaché</div>
+      <div class="timeline-org">Office of the Prime Cabinet Secretary, Kenya</div>
+      <div class="timeline-detail">Supported government planning and project coordination. Produced structured documentation and assisted with data verification under tight deadlines.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Sep 2022 – Feb 2025</div>
+      <div class="timeline-role">Vice President, Finance, Legalities &amp; Administration</div>
+      <div class="timeline-org">AIESEC in Kabarak University</div>
+      <div class="timeline-detail">Led finance, administration, and operational coordination for international youth programmes. Designed budgeting and audit frameworks that significantly reduced compliance gaps over 2.5 years.</div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <p class="section-label">Skills</p>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Development</div>
+      <div class="skill-item"><span class="skill-dot"></span>Python &amp; Flask</div>
+      <div class="skill-item"><span class="skill-dot"></span>React (JSX, hooks)</div>
+      <div class="skill-item"><span class="skill-dot"></span>RESTful API design</div>
+      <div class="skill-item"><span class="skill-dot"></span>Git &amp; GitHub</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Data</div>
+      <div class="skill-item"><span class="skill-dot"></span>SQL &amp; data modelling</div>
+      <div class="skill-item"><span class="skill-dot"></span>ETL pipeline design</div>
+      <div class="skill-item"><span class="skill-dot"></span>Pandas &amp; NumPy</div>
+      <div class="skill-item"><span class="skill-dot"></span>Tableau &amp; Excel</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Machine Learning</div>
+      <div class="skill-item"><span class="skill-dot"></span>Scikit-learn</div>
+      <div class="skill-item"><span class="skill-dot"></span>XGBoost / LightGBM</div>
+      <div class="skill-item"><span class="skill-dot"></span>LSTM / GRU networks</div>
+      <div class="skill-item"><span class="skill-dot"></span>SHAP &amp; LIME</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Professional</div>
+      <div class="skill-item"><span class="skill-dot"></span>Stakeholder management</div>
+      <div class="skill-item"><span class="skill-dot"></span>Project coordination</div>
+      <div class="skill-item"><span class="skill-dot"></span>Technical documentation</div>
+      <div class="skill-item"><span class="skill-dot"></span>Agile ways of working</div>
+    </div>
+  </div>
+
+  <p class="section-label">Education</p>
+  <div class="edu-list">
+    <div class="edu-item">
+      <div class="edu-degree">MSc Information Technology with Data Analytics</div>
+      <div class="edu-school">University of the West of Scotland</div>
+      <div class="edu-year">Awarded 2026 (Eligible for Graduation)</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-degree">BSc Economics and Statistics</div>
+      <div class="edu-school">Kabarak University</div>
+      <div class="edu-year">2024</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-degree">CPA Foundation Accounting and Financial Studies</div>
+      <div class="edu-school">KCA University</div>
+      <div class="edu-year">2022</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <p class="section-label">Contact</p>
+  <div class="contact-grid">
+    <div class="contact-intro">
+      Open to graduate and professional roles in data analytics, systems development, and coordination. Based in Paisley, Scotland — available for hybrid or remote work.
+    </div>
+    <div class="contact-items">
+      <a href="mailto:tinawanjiku84@gmail.com" class="contact-item">
+        <i class="ti ti-mail contact-icon" aria-hidden="true"></i>
+        tinawanjiku84@gmail.com
+      </a>
+      <a href="tel:07594299954" class="contact-item">
+        <i class="ti ti-phone contact-icon" aria-hidden="true"></i>
+        07594 299954
+      </a>
+      <span class="contact-item">
+        <i class="ti ti-map-pin contact-icon" aria-hidden="true"></i>
+        Paisley, United Kingdom
+      </span>
+      <a href="https://github.com/KunguChristineWanjiku" class="contact-item" target="_blank" rel="noopener">
+        <i class="ti ti-brand-github contact-icon" aria-hidden="true"></i>
+        github.com/KunguChristineWanjiku
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Christine Kungu &copy; 2026</p>
+</footer>
+
+</body>
+</html>
